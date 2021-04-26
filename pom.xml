@@ -15,6 +15,7 @@
 	<description>Sample project for Spring Boot Workshop</description>
 	<properties>
 		<java.version>11</java.version>
+		<springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,6 +58,17 @@
 					<artifactId>jaxb-osgi</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox-boot-starter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-boot-starter.version}</version>
 		</dependency>
 
 		<dependency>
