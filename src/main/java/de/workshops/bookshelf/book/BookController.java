@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,5 +21,10 @@ public class BookController {
         model.addAttribute("books", bookService.getBooks());
 
         return "books";
+    }
+
+    @PostMapping("/success")
+    public String redirectToSuccessUrl(Model model) {
+        return getAllBooks(model);
     }
 }

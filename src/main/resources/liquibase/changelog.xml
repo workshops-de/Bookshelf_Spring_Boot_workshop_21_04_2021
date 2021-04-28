@@ -17,4 +17,48 @@
             <dropTable tableName="book"/>
         </rollback>
     </changeSet>
+
+    <changeSet id="createTableUsers" author="workshops">
+        <createTable tableName="user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="varchar"/>
+            <column name="firstname" type="varchar"/>
+            <column name="lastname" type="varchar"/>
+            <column name="role" type="varchar"/>
+            <column name="lastlogin" type="datetime"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="user"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="workshops" id="createDefaultAdmin">
+        <sql>
+            INSERT INTO "user" (username, password, firstname, lastname, role)
+            VALUES ('dbUser', 'password', 'Default', 'Default', 'ADMIN');
+        </sql>
+        <rollback>
+            <sql>
+                DELETE FROM "user";
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="workshops" id="updateDefaultAdmin">
+        <sql>
+            UPDATE "user" SET password = '$2a$10$vRoj.fjwq6EcEph0ScM54u9rRxCyBQDIDBdTil3ILXqCm6RvjQ4RC'
+            WHERE username = 'dbUser';
+        </sql>
+        <rollback>
+            <sql>
+                UPDATE "user" SET password = 'password'
+                WHERE username = 'dbUser';
+            </sql>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
